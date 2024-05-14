@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <link rel="preload" href="{{ url_for('static', filename='css/style.css') }}" as="style" onload="this.rel='stylesheet'">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Dog Breed Classifier</title>
+    <style>
+        /* Inline critical CSS */
+        body, html { margin: 0; padding: 0; font-family: 'Roboto', sans-serif; }
+        header, main, footer { padding: 20px; }
+        nav, h1, h2 { text-align: center; }
+    </style>
+    <link rel="preload" href="{{ url_for('static', filename='css/style.css') }}" as="style" onload="this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+</head>
+<body>
+    <header>
+        <h1>Smart Dog Breed Classifier</h1>
+        <nav>
+            {% if current_user.is_authenticated %}
+                <span>Welcome, {{ current_user.username }}!</span> |
+                <a href="{{ url_for('logout') }}">Logout</a>
+            {% else %}
+                <a href="{{ url_for('login') }}">Login</a> |
+                <a href="{{ url_for('register') }}">Register</a>
+            {% endif %}
+            | <a href="{{ url_for('game_bp.game') }}">Game</a> |
+            <a href="{{ url_for('dashboard') }}">Dashboard</a> |
+            <a href="{{ url_for('breed_results') }}">Breed Results</a> |
+            <a href="{{ url_for('gan_playground') }}">GAN Playground</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="welcome-section">
+            <h2>Welcome to the Smart Dog Breed Classifier!</h2>
+            <p>This web application allows you to upload an image of a dog and find out its breed. We use a machine learning model trained using transfer learning, which leverages pre-trained models and fine-tunes them for specific tasks. This model supports classification among 115 dog breeds and was trained on a dataset of 16,944 training images.</p>
+            <p>The vast majority of images used for training were obtained from the Stanford Dog Breed Dataset.</p>
+            <p>Check out how the model performed on all 115 breeds on the breed results page for a visual exploration of images.</p>
+            <p>Follow the simple steps below to get started:</p>
+            <ol>
+                <li>Click on <strong>Choose an Image</strong> to select a dog image from your device. The clearer the image of the dog, the better.</li>
+                <li>Once the image is displayed, click on <strong>Classify</strong> to predict the breed.</li>
+                <li>View the predicted breed and confidence level.</li>
+                <li>If you know the actual breed, you can confirm or deny the prediction to help improve our model.</li>
+            </ol>
+        </section>
+
+        <section class="main-section">
+            <form id="upload-form" action="/submit_image" method="post" enctype="multipart/form-data">
+                <label for="file-input" id="file-label">
+                    <span class="icon">📸</span>
+                    <span class="text">Choose an image</span>
+                </label>
+                <input type="file" id="file-input" name="image" accept="image/*">
+                <button id="classify-btn" class="classify-button" type="submit">Classify</button>
+            </form>
+            <div id="image-preview-container">
+                <img id="image-preview" alt=" " class="hidden">
+            </div>
+        </section>
+
+        <section id="result-section" class="hidden">
+            <h2>Result</h2>
+            <div id="result-text"></div>
+            <div id="predicted-breed"></div>
+            <div id="confidence"></div>
+        </section>
+
+        <div id="confirmation-container" class="hidden">
+            <p id="confirmation-message">Do you know the real breed of this dog?</p>
+            <button id="yes-know-btn" class="confirmation-btn">Yes</button>
+            <button id="no-know-btn" class="confirmation-btn">No</button>
+            <div id="breed-dropdown" class="hidden">
+                <label for="breed-select">Select the correct breed:</label>
+                <input type="text" id="breed-search-input" class="breed-search-input" placeholder="Search for a breed...">
+                <select id="breed-select">
+                    <!-- Breed options will be dynamically added here -->
+                </select>
+                <button id="submit-correct-breed">Submit</button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-about">
+                <h3>SmartBreed Dog Classifier</h3>
+                <p>A simple dog breed classification application.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="about">About Us</a></li>
+                    <li><a href="privacy_policy">Privacy Policy</a></li>
+                    <li><a href="feedback">Feedback</a></li>
+                    <li><a href="terms">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script defer src="{{ url_for('static', filename='js/main.js' ) }}"></script>
+</body>
+</html>

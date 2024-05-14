@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "smartdogbreed-416219",
+  "private_key_id": "c363a1e8919c794082d9598807ad4210411d733e",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCzOjYXmXAZ/6gc\n/5z1kygDMyZPIVztN3tdIlKUs1KuBYcvgXIgvGbnDQ2N39aoNg0Zu6/tFrzj+Caj\n8pKMKixmAh9zF/ncrEh1Lvy9JK9gFjsp9/tITnFeR4bYEGnr5p/+u8oLfh9sYKOJ\nk+cjQKvcpefyRmOkMqyQjoaf5USV/fydadFkavunJmnjIOvKEEMUWFuaCcolq+77\nfqYfjYbfg3aDuCYC9YVczzGCsskUEP7VsSN+dfWSjJ0LNQHhxCzPDbG9tddPQor7\nbaBcqcPL8X0vRc/V8DkyUUMa9bkLy+Bzy3UGMcCs5NWQ+Zh9v6Dn0m3tttTkMPfg\nJtt3BKfBAgMBAAECggEAAKvIm/LPdjyoSoiILnttFC6sgDdYGsC/zAHQNGy40xi3\nAIPnGV9dCTWt7g4N3Jroksp9yiF0sRP7+F299ricNzO6mqS9XZsPS8LZ2MQhI4Hu\nJLheVk9PY/rcO/w7D7FyCuDboOmsM8Klqo7FYEGOTTpUE2qnl9I+sRke0x1nYJAn\nFtjE1Igvkzz+au0dypQ8NEhlIB24gzwWa7Zf1OOrOZ4Gv5ssEj1tDZFNZMoRUhFO\n6QRhP17qlnmDWz+oRDBS8rFJEjA8ObWtYXSdUnPFyJhg2y7bUAoUrPM5rQyUAo++\n/DUYk1A7wRFTrteWAoYA77Ce42IgiG2Xqyo5u/EAwQKBgQD0fcmuI6i0d2So8dFx\n2nQz2qpg09ea/5seHCiWjVX4rXH+ZwfFFX9uCVW6RDiaqMjPR2ePLCKhO2a9iZkh\n0DI3spN0K+JtFIZyFV2/U1fZa50Vdf0D0HbWR3rDF9FjnE891v1kpE8oRTE7PagM\nSQVYUfcVVQWzV4Z++gTFxhlTzQKBgQC7qfff9UulRL625BWdEhnPumz1HSFua4zi\nAzs7Q69Et0LPHtvCa5niXLPIaGoHhrS+W/64l0+8acNDG7yxuiZ48Hlp/1pBr93W\nE8tIMgeftVrhNME+r5noR9OFkYr20y8v9LdtUS7OX4nr8fMtelj0Tpk4/qcVWEAD\nQeBmxr7XxQKBgQCUcZc1SuNQhzkvtnrzRK7PGRHfbl/29QDKfFBMcI3lSfHvg8Dc\n8ZuIRNSvHmK7zIT4DSOcczCncjiEFfpK5GzJEnyiyU5V6mNi+wQLeV/aW5Nph1TS\nrwyoN4ga0ehJMYuPQWxiYbzJ95DXpizVILTFFicN5axrYlX/3G9vYULZdQKBgQCV\nGIDa6iPjdi6fV67kT9E5/L88Lpy1AbW4iyCwASJq0b6+l6G5YYutEEG14176A8ft\nxWEmfvDWnKCJ3KuZ+G9Afq23zSyEK5lvz+IdxcHQ3WEKs8Mkbpc0uHwRDoT9fONs\nklx4+ZraU4Vcc6nkY+PwldGeOpO8nZSeAeSrQxO0kQKBgQCiKWQWbfqFAT9ZiFf5\ntCsyOI6BYkpQoIubK0MI5wvYxbz7afhbwGUio7I7W2a8bXxAJ6f/b+7qh9Wr7pyh\n65HENQBFWpDc5QD4VE0viOBEBnISBni0kXgj0bG8yYo+fZA1GzumN/oWDB/o8uAy\ndC1uJnastppYO5lX0Ink7tROCw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "dog-breed-classification@smartdogbreed-416219.iam.gserviceaccount.com",
+  "client_id": "108008559307178520307",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/dog-breed-classification%40smartdogbreed-416219.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

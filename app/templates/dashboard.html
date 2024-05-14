@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-header">
+                User Dashboard
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Welcome, {{ user.username }}!</h5>
+                <p class="card-text">Here's a summary of your activity:</p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Email: {{ user.email }}</li>
+                            <li class="list-group-item">Number of Uploads: {{ total_uploads }}</li>
+                            <li class="list-group-item">Total Classifications: {{ total_classifications }}</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <!-- Placeholder for future interactive elements or graphs -->
+                        <canvas id="activityChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-muted">
+                <button class="btn btn-primary" onclick="updateProfile()">Update Profile</button>
+                <button class="btn btn-danger" onclick="confirmDelete()">Delete Account</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script>
+        // Include any JavaScript needed for interacting with the charts or other elements
+    </script>
+</body>
+</html>

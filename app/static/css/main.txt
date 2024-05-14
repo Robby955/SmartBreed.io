@@ -1,0 +1,248 @@
+document.addEventListener('DOMContentLoaded', function () {
+    const fileInput = document.getElementById('file-input');
+    const imagePreview = document.getElementById('image-preview');
+    const classifyBtn = document.getElementById('classify-btn');
+    const resultSection = document.getElementById('result-section');
+
+    let predictedBreed;
+    const predictedBreedElement = document.getElementById('predicted-breed');
+
+    let breedNames = [];
+
+    const confidence = document.getElementById('confidence');
+    const confirmationContainer = document.getElementById('confirmation-container');
+    const yesKnowBtn = document.getElementById('yes-know-btn');
+    const noKnowBtn = document.getElementById('no-know-btn');
+    const breedDropdown = document.getElementById('breed-dropdown');
+    const breedSelect = document.getElementById('breed-select');
+    const submitBreedBtn = document.getElementById('submit-correct-breed');
+    const searchInput = document.getElementById('search-input');
+    const uploadForm = document.getElementById('upload-form');
+    const breedSearchInput = document.getElementById('breed-search-input');
+
+    function filterBreedSuggestions(input) {
+        const filteredBreeds = breedNames.filter(breed => breed.toLowerCase().includes(input.toLowerCase()));
+        return filteredBreeds;
+    }
+
+    function updateBreedOptions(input) {
+        const filteredBreeds = filterBreedSuggestions(input);
+        breedSelect.innerHTML = '';
+        filteredBreeds.forEach(breed => {
+            const option = document.createElement('option');
+            option.value = breed;
+            option.textContent = breed.replace(/_/g, ' ');
+            breedSelect.appendChild(option);
+        });
+    }
+
+    breedSearchInput.addEventListener('input', function () {
+        const input = breedSearchInput.value;
+        updateBreedOptions(input);
+    });
+
+    document.getElementById('submit-correct-breed').addEventListener('click', function() {
+        const formData = new FormData();
+        const fileInput = document.getElementById('file-input');
+        const predictedBreed = document.getElementById('predicted-breed').textContent.split(': ')[1];
+        const userAnswer = document.getElementById('breed-select').value;
+
+        formData.append('image', fileInput.files[0]);
+        formData.append('predicted_breed', predictedBreed);
+        formData.append('user_answer', userAnswer);
+
+        fetch('/submit_image', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Success:', data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+
+    fileInput.addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                imagePreview.src = e.target.result;
+                imagePreview.classList.remove('hidden');
+                confirmationContainer.classList.remove('hidden');
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    classifyBtn.addEventListener('click', function () {
+        const formData = new FormData();
+        formData.append('file', fileInput.files[0]);
+        fetch('/classify', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.json())
+        .then(data => {
+            predictedBreed = data.prediction;
+            predictedBreedElement.textContent = `Predicted Breed: ${predictedBreed}`;
+            confidence.textContent = `Confidence: ${Math.round(data.confidence * 100)}%`;
+            resultSection.classList.remove('hidden');
+            confirmationContainer.style.display = 'block';
+        });
+    });
+
+    yesKnowBtn.addEventListener('click', function () {
+        yesKnowBtn.style.display = 'none';
+        noKnowBtn.style.display = 'none';
+        breedDropdown.style.display = 'block';
+        breedSearchInput.value = '';
+        updateBreedOptions('');
+        document.getElementById('confirmation-message').textContent = "Please select the correct breed:";
+    });
+
+    noKnowBtn.addEventListener('click', function () {
+        submitResponse(null);
+    });
+
+    submitBreedBtn.addEventListener('click', function () {
+        const userBreed = breedSelect.value;
+        submitResponse(userBreed);
+    });
+
+    function submitResponse(userBreed) {
+        const formData = new FormData();
+        formData.append('image', fileInput.files[0]);
+        formData.append('predicted_breed', predictedBreedElement.textContent.split(': ')[1]);
+        formData.append('user_answer', userBreed);
+
+        fetch('/submit_response', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Submission successful:', data);
+            resetInterface();
+            if (userBreed !== null) {
+                document.getElementById('confirmation-message').textContent = "Thank you for your feedback!";
+            }
+        })
+        .catch(error => {
+            console.error('Submission error:', error);
+        });
+    }
+
+    if (uploadForm) {
+        uploadForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const fileInput = document.getElementById('file-input');
+            const formData = new FormData();
+            formData.append('image', fileInput.files[0]);
+
+            fetch('/submit_image', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Image uploaded successfully:', data);
+            })
+            .catch(error => {
+                console.error('Error uploading image:', error);
+            });
+        });
+    }
+
+    if (classifyBtn) {
+        classifyBtn.type = 'button';
+    }
+
+    if (yesKnowBtn) {
+        yesKnowBtn.type = 'button';
+    }
+
+    if (noKnowBtn) {
+        noKnowBtn.type = 'button';
+    }
+
+    if (confirmationContainer) {
+        confirmationContainer.style.display = 'none';
+    }
+
+    if (breedDropdown) {
+        breedDropdown.style.display = 'none';
+    }
+
+    if (fileInput) {
+        fileInput.addEventListener('change', function (event) {
+            const file = event.target.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.classList.remove('hidden');
+                    confirmationContainer.classList.remove('hidden');
+                    document.getElementById('confirmation-message').textContent = "Do you know the real breed of this dog?";
+                    resetInterface();
+                };
+
+                reader.readAsDataURL(file);
+            } else {
+                imagePreview.src = '';
+                imagePreview.classList.add('hidden');
+                resetInterface();
+            }
+        });
+    }
+
+    function resetInterface() {
+        yesKnowBtn.style.display = 'inline-block';
+        noKnowBtn.style.display = 'inline-block';
+        breedDropdown.style.display = 'none';
+        document.getElementById('confirmation-message').textContent = "Do you know the real breed of this dog?";
+        resultSection.classList.add('hidden');
+    }
+
+    function fetchBreedNames() {
+        if (!breedSelect) return;
+        console.log("Fetching breed names...");
+        fetch('/breed_names')
+            .then(response => {
+                console.log("Received response:", response);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("Breed names fetched:", data);
+                if (!Array.isArray(data)) {
+                    throw new Error('Response format is incorrect');
+                }
+
+                breedNames = data.sort();
+                breedSelect.innerHTML = '';
+                breedNames.forEach(breed => {
+                    const option = document.createElement('option');
+                    option.value = breed;
+                    option.textContent = breed.replace(/_/g, ' ');
+                    breedSelect.appendChild(option);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching breed names:', error);
+            });
+    }
+
+    fetchBreedNames();
+});
