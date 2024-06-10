@@ -73,7 +73,7 @@ Here are some screenshots of the SmartBreed application in action:
 <img src="img/pic1.png" alt="Home Page" width="400">
 
 
-<img src="img/pic2.png" alt="Classify" width="400">
+<img src="img/pic3.png" alt="Classify" width="400">
 
 
 <img src="img/pic4.png" alt="BreedDetail" width="400">
@@ -87,6 +87,9 @@ Here are some screenshots of the SmartBreed application in action:
 - Introduce additional features to the user interface to facilitate a more interactive feedback process.
 - Expand the model's capabilities to classify a wider range of images or to improve its accuracy and efficiency.
 - Develop an automated data pipeline for seamless model retraining.
+- Introduce breed Quiz that will use a RAG.
+- Work on GANs.
+
 
 ## Deployment and Scalability
 
