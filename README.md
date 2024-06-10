@@ -1,3 +1,8 @@
+
+<img src="img/mylogo.png" width="400">
+
+
+
 # SmartBreed
 
 AI-driven web application designed to accurately identify dog breeds from user-uploaded images. This comprehensive project integrates various advanced technologies and methodologies, including machine learning, deep learning, and web development frameworks, to deliver a seamless and interactive user experience.
@@ -65,16 +70,16 @@ Docker is used extensively in this project to ensure consistency and portability
 Here are some screenshots of the SmartBreed application in action:
 
 <img src="img/pic1.png" alt="Home Page" width="400">
-*Home Page: Upload and classify dog images.*
+
 
 <img src="img/pic2.png" alt="Classify" width="400">
-*Classify: Upload and classify dog images.*
+
 
 <img src="img/pic4.png" alt="BreedDetail" width="400">
-*Breed Details: View all the breeds and their model details.*
 
-<img src="img/pic5.png" alt="BreedDetail" width="400">
-*Breed Details: View all the breeds and their model details.*
+
+<img src="img/pic5.png"  width="400">
+
 ## Future Enhancements
 
 - Implement a more robust active learning framework to optimize the retraining cycle.
@@ -100,4 +105,4 @@ This project is for educational purposes only. The accuracy of breed identificat
 
 ---
 
-*SmartBreed - Making dog breed identification easier and more fun!*
+
