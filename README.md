@@ -2,10 +2,11 @@
 <img src="img/mylogo.png" width="400">
 
 
-
 # SmartBreed
 
 AI-driven web application designed to accurately identify dog breeds from user-uploaded images. This comprehensive project integrates various advanced technologies and methodologies, including machine learning, deep learning, and web development frameworks, to deliver a seamless and interactive user experience.
+
+Access it at https://smartbreed.io or click [here](https://smartbreed.io).
 
 This application is a deep learning model based on MobileNetV2, a powerful and efficient convolutional neural network optimized for speed and accuracy, making it ideal for real-time applications.
 
